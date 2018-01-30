@@ -25,12 +25,12 @@ export const getAll = (url = window.location.search) => {
   return matches.reduce(reducerFn, {});
 };
 
-export const get = parameter => {
+export const get = keyName => {
   const params = getAll();
 
-  if (parameter === undefined) return params;
+  if (keyName === undefined) return params;
 
-  return Object.keys(params).filter(key => key === parameter)[0];
+  return params[keyName];
 };
 
 const URL = {
