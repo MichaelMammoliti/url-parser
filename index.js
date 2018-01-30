@@ -20,9 +20,7 @@ const reducerFn = (acc, value) => {
 export const getAll = (url = window.location.search) => {
   const pattern = new RegExp(/[^&?]*?=[^&?]*/, 'g');
 
-  const matches = decodeURIComponent(url).match(pattern);
-
-  if (!matches || !matches.length) return {};
+  const matches = decodeURIComponent(url).match(pattern) || [];
 
   return matches.reduce(reducerFn, {});
 };
