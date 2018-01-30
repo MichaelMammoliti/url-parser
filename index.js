@@ -17,7 +17,7 @@ const reducerFn = (acc, value) => {
   return { ...acc, [s[0]]: getValue(s[1]) };
 };
 
-export const getParameters = (url = window.location.search) => {
+export const getAll = (url = window.location.search) => {
   const pattern = new RegExp(/[^&?]*?=[^&?]*/, 'g');
 
   return decodeURIComponent(url)
@@ -26,8 +26,17 @@ export const getParameters = (url = window.location.search) => {
   ;
 };
 
+export const get = parameter => {
+  const params = getAll();
+
+  if (parameter === undefined) return params;
+
+  return Object.keys(params).filter(key => key === parameter)[0];
+};
+
 const URL = {
-  getParameters,
+  get,
+  getAll,
 };
 
 export default URL;
